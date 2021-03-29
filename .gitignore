@@ -1,0 +1,5 @@
+.chalice/deployments/
+.chalice/venv/
+.DS_Store
+.chalicelib/__pycache__/
+__pycache__/
