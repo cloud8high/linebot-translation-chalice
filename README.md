@@ -1,6 +1,7 @@
 # AWS Chalice を用いて、翻訳 LINE Bot をサーバレスアーキテクチャで作る！
 ![動画画面10秒gif_320](https://user-images.githubusercontent.com/40209684/112859077-746ecf00-90ed-11eb-87cc-165ae63d9d4b.GIF)  
-<img a="https://youtu.be/Rj2vbdTWr0o" src="https://user-images.githubusercontent.com/40209684/112913068-ebc75180-9133-11eb-855d-790289e370fd.png" width="100"> に動作画面の録画をアップロード済
+<a href="https://youtu.be/Rj2vbdTWr0o">
+<img src="https://user-images.githubusercontent.com/40209684/112913068-ebc75180-9133-11eb-855d-790289e370fd.png" width="100"> に動作画面をアップロード済</a>
 
 ## 本リポジトリについて
 - 日本語や中国語でメッセージを送信すると、**英語に翻訳をして返信してくれる LINE Bot** を開発します。
@@ -51,7 +52,7 @@ $ git clone https://github.com/cloud8high/linebot-translation-chalice.git
 - [公式ドキュメント](https://developers.line.biz/ja/docs/messaging-api/getting-started/#using-console)の手順に沿い、「プロバイダー」と「チャネル」を作ります。
   - LINE Developers の画面右下で言語を「日本語」に切り替えることができます。
   - （参考）作成したプロバイダーとチャネルは、スマホの LINE アプリでは以下のように表示されます。
-  - <img src="https://user-images.githubusercontent.com/40209684/112856675-01645900-90eb-11eb-8b2e-76ff01036a5e.png" width="300">
+  - <img src="https://user-images.githubusercontent.com/40209684/112856675-01645900-90eb-11eb-8b2e-76ff01036a5e.png" width="450">
 - 「チャネルアクセストークン」と「チャネルシークレット」を発行・メモします。
   - どちらも、[LINE Developersコンソール](https://developers.line.biz/console/) で確認できます。
   - [長期のチャネルアクセストークン](https://developers.line.biz/ja/docs/messaging-api/channel-access-tokens/#long-lived-channel-access-tokens) は、`LINE Developers トップ > プロバイダー選択 > チャネル選択 > 「Messaging API設定」タブ` 画面下部のボタンから発行
@@ -122,3 +123,7 @@ Resources deployed:
 $ export AWS_DEFAULT_REGION=ap-northeast-1
 $ chalice deploy --profile $PROFILE_NAME
 ```
+
+### Lambda 用 IAM ポリシーについて
+Chalice の IAM ポリシー自動生成機能では、Amazon Translate へのアクセスを許可する権限が付与されなかった。  
+そのため、自動生成されていたポリシーの権限に加えて、`TranslateReadOnlyPolicy` と同じ権限を加えた自作ポリシーファイルを .chalice/policy-dev.json に作成。config.json にてこちらを利用するように明記した。 
