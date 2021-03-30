@@ -1,12 +1,14 @@
 # AWS Chalice を用いて、翻訳 LINE Bot をサーバレスアーキテクチャで作る！
 ![動画画面10秒gif_320](https://user-images.githubusercontent.com/40209684/112859077-746ecf00-90ed-11eb-87cc-165ae63d9d4b.GIF)  
 <a href="https://youtu.be/Rj2vbdTWr0o">
-<img src="https://user-images.githubusercontent.com/40209684/112913068-ebc75180-9133-11eb-855d-790289e370fd.png" width="100"> に動作画面をアップロード済</a>
+<img src="https://user-images.githubusercontent.com/40209684/112984613-151ac880-919a-11eb-8731-58919a8f30cd.png" width="100"> に動作画面をアップロード済</a>
 
 ## 本リポジトリについて
 - 日本語や中国語でメッセージを送信すると、**英語に翻訳をして返信してくれる LINE Bot** を開発します。
-- インターネット上では、PaaS である Heroku を用いておうむ返しをするチュートリアル記事が多く公開されていますが、今回は AWS Lambda と API Gateway を用いた **サーバレスアーキテクチャ** で構築します。
-- また、AWS Chalice という Python のフレームワークを用いることで、Lambda と API Gateway の構成をコードとして管理・デプロイします。
+- インターネットで検索をすると、「おうむ返し LINE Bot」を PaaS の Heroku 上で動かすチュートリアル記事が多く公開されています。
+- 今回は AWS Lambda と Amazon API Gateway を用いた **サーバレスアーキテクチャ** で構築しています。
+- 加えて、AWS Chalice という Python のフレームワークを用いることで、AWS の**構成をコードとして管理・デプロイ**できるようにしています。
+- <img src="https://user-images.githubusercontent.com/40209684/112984802-4f846580-919a-11eb-98f9-fdd47f2ccdd5.png" width="600">
 
 ## AWS Chalice について
 - AWS Chalice とは、AWS が OSS として開発・提供している、Python を用いたサーバレスフレームワークです。
