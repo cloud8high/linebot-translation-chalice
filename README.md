@@ -1,9 +1,11 @@
 # AWS Chalice を用いて、翻訳 LINE Bot をサーバレスアーキテクチャで作る！
+![動画画面10秒gif_320](https://user-images.githubusercontent.com/40209684/112859077-746ecf00-90ed-11eb-87cc-165ae63d9d4b.GIF)  
+<img a="https://youtu.be/Rj2vbdTWr0o" src="https://user-images.githubusercontent.com/40209684/112913068-ebc75180-9133-11eb-855d-790289e370fd.png" width="100"> に動作画面の録画をアップロード済
 
 ## 本リポジトリについて
-- 日本語や中国語でメッセージを送信すると、英語に翻訳をして返信してくれる LINE Bot を開発します。
-- インターネット上では、PaaS である Heroku を用いるチュートリアル記事が多く公開されていますが、今回は AWS Lambda と API Gateway を用いた **サーバレスアーキテクチャ** で構築します。
-- また、AWS Chalice という Python のフレームワークを用いることで、Lambda と API Gateway の構成をコードとして管理・デプロイできる構成にします。
+- 日本語や中国語でメッセージを送信すると、**英語に翻訳をして返信してくれる LINE Bot** を開発します。
+- インターネット上では、PaaS である Heroku を用いておうむ返しをするチュートリアル記事が多く公開されていますが、今回は AWS Lambda と API Gateway を用いた **サーバレスアーキテクチャ** で構築します。
+- また、AWS Chalice という Python のフレームワークを用いることで、Lambda と API Gateway の構成をコードとして管理・デプロイします。
 
 ## AWS Chalice について
 - AWS Chalice とは、AWS が OSS として開発・提供している、Python を用いたサーバレスフレームワークです。
@@ -48,8 +50,8 @@ $ git clone https://github.com/cloud8high/linebot-translation-chalice.git
 ### LINE Developers で Messaging API を利用できるようにします。
 - [公式ドキュメント](https://developers.line.biz/ja/docs/messaging-api/getting-started/#using-console)の手順に沿い、「プロバイダー」と「チャネル」を作ります。
   - LINE Developers の画面右下で言語を「日本語」に切り替えることができます。
-  - 作成したプロバイダーの名前は、LINE アプリにて、友達画面の下の方に薄く表示されます。
-  - 作成したチャネルの名前は、LINE アプリにて、友達の名前として表示されます。
+  - （参考）作成したプロバイダーとチャネルは、スマホの LINE アプリでは以下のように表示されます。
+  - <img src="https://user-images.githubusercontent.com/40209684/112856675-01645900-90eb-11eb-8b2e-76ff01036a5e.png" width="300">
 - 「チャネルアクセストークン」と「チャネルシークレット」を発行・メモします。
   - どちらも、[LINE Developersコンソール](https://developers.line.biz/console/) で確認できます。
   - [長期のチャネルアクセストークン](https://developers.line.biz/ja/docs/messaging-api/channel-access-tokens/#long-lived-channel-access-tokens) は、`LINE Developers トップ > プロバイダー選択 > チャネル選択 > 「Messaging API設定」タブ` 画面下部のボタンから発行
@@ -91,3 +93,32 @@ Resources deployed:
 - 英語に翻訳されて返信が帰ってくるはずです。
 - 送信したメッセージは、自動で言語解析がされるため、日本語以外でも英語へ翻訳できます。
   - ※ Amazon Translate の[サポートしている言語](https://docs.aws.amazon.com/translate/latest/dg/what-is.html)に限ります。
+
+## ライセンス
+- [MIT](https://github.com/cloud8high/linebot-translation-chalice/blob/main/LICENSE)
+
+## 作成者について
+- [Qiita](https://qiita.com/hayate_h)
+- [Twitter](https://twitter.com/cloud8high)
+- [GitHub](https://github.com/cloud8high)
+
+## 参考資料等
+- [GitHub - line/line-bot-sdk-python: LINE Messaging API SDK for Python](https://github.com/line/line-bot-sdk-python)
+- [Messaging API | LINE Developers](https://developers.line.biz/ja/docs/messaging-api/)
+
+
+## 個人備忘録
+### 公開時に注意するファイル
+以下ファイルはプロジェクト固有の情報を含む可能性があるので、公開前に必ず確認。
+```
+.chalice/config.json
+.chalice/deployed/dev.json
+.gitignore
+```
+
+### profile を指定した chalice deploy コマンドについて
+プロファイルを指定してデプロイする場合、リージョン情報を求められることがある。
+```shell
+$ export AWS_DEFAULT_REGION=ap-northeast-1
+$ chalice deploy --profile $PROFILE_NAME
+```
