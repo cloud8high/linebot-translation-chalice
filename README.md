@@ -8,7 +8,7 @@
 - インターネットで検索をすると、「おうむ返し LINE Bot」を PaaS の Heroku 上で動かすチュートリアル記事が多く公開されています。
 - 今回は AWS Lambda と Amazon API Gateway を用いた **サーバレスアーキテクチャ** で構築しています。
 - 加えて、AWS Chalice という Python のフレームワークを用いることで、AWS の**構成をコードとして管理・デプロイ**できるようにしています。
-- <img src="https://user-images.githubusercontent.com/40209684/112984802-4f846580-919a-11eb-98f9-fdd47f2ccdd5.png" width="600">
+- <img src="https://user-images.githubusercontent.com/40209684/112984802-4f846580-919a-11eb-98f9-fdd47f2ccdd5.png" width="750">
 
 ## AWS Chalice について
 - AWS Chalice とは、AWS が OSS として開発・提供している、Python を用いたサーバレスフレームワークです。
